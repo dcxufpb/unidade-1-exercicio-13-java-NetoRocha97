@@ -44,6 +44,15 @@ public class TestLoja {
 			+ "Mun 1 - E1" + BREAK + "CEP:11111-111 Tel (11) 1111-1111" + BREAK + "Obs 1" + BREAK
 			+ "CNPJ: 11.111.111/1111-11" + BREAK + "IE: 123456789" + BREAK;
 
+	private String TEXTO_ESPARADO_EXERCICIO2_CUSTOMIZADO = "Loja CRVG" + BREAK +
+			"R. Gen. Almério de Moura, 131 Estádio" + BREAK +
+			"São Januário - Rio de Janeiro - RJ" + BREAK +
+			"CEP:20921-060 Tel (21) 91898-1927" + BREAK +
+			"Obs 1" + BREAK +
+			"CNPJ: 12.111.333/12133-12" + BREAK +
+			"IE: 123.456.789.000" + BREAK;
+
+
 	private String NOME_LOJA = "Loja 1";
 	private String LOGRADOURO = "Log 1";
 	private int NUMERO = 10;
@@ -238,25 +247,25 @@ public class TestLoja {
 	@Test
 	public void exercicio02_Customizado() {
 		// Defina seus próprios valores para as variáveis a seguir
-		String nomeLoja = "";
-		String logradouro = "";
-		int numero = 0;
-		String complemento = "";
-		String bairro = "";
-		String municipio = "";
-		String estado = "";
-		String cep = "";
-		String telefone = "";
-		String observacao = "";
-		String cnpj = "";
-		String inscricaoEstadual = "";
-
+		String nomeLoja = "Loja CRVG";
+		String logradouro = "R. Gen. Almério de Moura";
+		int numero = 131;
+		String complemento = "Estádio";
+		String bairro = "São Januário";
+		String municipio = "Rio de Janeiro";
+		String estado = "RJ";
+		String cep = "20921-060";
+		String telefone = "(21) 91898-1927";
+		String observacao = "Obs 1";
+		String cnpj = "12.111.333/12133-12";
+		String inscricaoEstadual = "123.456.789.000";
+		
 		Loja lojaCustomizada = new Loja(nomeLoja,
 				new Endereco(logradouro, numero, complemento, bairro, municipio, estado, cep), telefone, observacao,
 				cnpj, inscricaoEstadual);
 
 		// E atualize o texto esperado abaixo
-		rodarTestarRetorno("" + BREAK, lojaCustomizada);
+		rodarTestarRetorno(TEXTO_ESPARADO_EXERCICIO2_CUSTOMIZADO, lojaCustomizada);
 	}
 
 	private void rodarTestarRetorno(String expected, Loja loja) {
@@ -275,5 +284,5 @@ public class TestLoja {
 			assertEquals(mensagemEsperada, e.getMessage());
 		}
 	}
-
 }
+
