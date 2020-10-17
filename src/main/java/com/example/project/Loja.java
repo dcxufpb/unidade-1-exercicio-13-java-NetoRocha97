@@ -47,9 +47,55 @@ public class Loja {
         this.endereco = endereco;
     }
 
-    public String dadosLoja() {
-		// Implemente aqui
-		return null;
+    public static boolean isEmpty(String input){
+		if (input == null){
+			return true;
+		}
+		
+		if (input.equals("")){
+			return true;
+		}
+
+		else{
+			return false;
+		}
 	}
+
+    public static String brk = System.lineSeparator();
+
+    public void validarCamposObrigatorio(){
+        
+        if (isEmpty(this.getNomeLoja())){
+			throw new RuntimeException ("O campo nome da loja é obrigatório");
+        }
+        
+        if(isEmpty(this.getCnpj())){
+            throw new RuntimeException("O campo cnpj da loja é obrigatório");
+        }
+
+        if(isEmpty(this.getInscricaoEstadual())){
+            throw new RuntimeException("O campo inscrição estadual da loja é obrigatório");
+        }
+}
+    public String dadosLoja() {
+
+        String _telefone = isEmpty(getTelefone()) ? "" : "Tel " + getTelefone();
+        _telefone = (!_telefone.isEmpty() && !isEmpty(endereco.getCep())) ? " " + _telefone : _telefone;
+		
+		String _observacao = isEmpty(getObservacao()) ? "" : getObservacao();				
+		String _cnpj = "CNPJ: " + getCnpj();
+        String _ie = "IE: " + getInscricaoEstadual();
+        
+
+        String retornoLoja = getNomeLoja() + brk;
+        retornoLoja += endereco.dadosEndereco();
+        retornoLoja += _telefone + brk;
+		retornoLoja += _observacao + brk;
+		retornoLoja += _cnpj + brk;
+        retornoLoja += _ie + brk;   
+        
+        return retornoLoja;
+
+    }
 
 }
